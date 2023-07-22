@@ -3,17 +3,67 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello Bulma!</title>
+    <title>Weather Flash</title>
     <link rel="stylesheet" href="./assets/css/reset.css" />
-    <link rel="stylesheet" href="./assets/css/style.css" />
     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="./assets/js/script.js" defer></script>
 </head>
 
-<body>
+<body class="has-background-info">
+<nav class="navbar has-background-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand title">
+        <a class="navbar-item has-text-warning" href="">
+        Weather Flash
+        <img src="./assets/imgs/Lightning_bolt_inside_teal_circle.svg" width="38" height="28">
+        </a>
+    </div>
+</nav>
 
+<main class="columns">
+    <div class="card column is-three-fifths">
+        <div class="card-image">
+            <figure class="image is-4by3">
+            <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+            </figure>
+        </div>
+
+        <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-48x48">
+                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                    </figure>
+                </div>
+                
+                <div class="media-content">
+                    <p class="title is-4">Ocean City, Maryland</p>
+                    <p class="subtitle is-6">7/21/2023</p>
+                </div>
+            </div>
+        
+            <div class="content"> Lumens
+                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            </div>
+        </div>
+    </div>
+
+    <form class="box column is-one-fifth">
+        <div class="field">
+            <label class="label">I need to know the weather in:</label>
+            <div class="control">
+                <input class="input" type="city-name" placeholder="city name, state or country">
+            </div>
+        </div>
+    
+        <button class="button is-primary">Search</button>
+    </form>
+</main>
 </body>
 </html>
