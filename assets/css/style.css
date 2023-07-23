@@ -4,6 +4,10 @@ body {
     font-size: 120%;
 }
 
+span {
+    padding-inline: 0.5rem;
+}
+
 .column {
     margin: 1.5rem;
 }
