@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 
 body {
     font-family: 'Oswald', sans-serif;
@@ -8,6 +12,11 @@ span {
     padding-inline: 0.5rem;
 }
 
-.column {
-    margin: 1.5rem;
+.hero {
+    width: 100%;
+}
+
+
+#previous-searches button{
+    color: white;
 }
