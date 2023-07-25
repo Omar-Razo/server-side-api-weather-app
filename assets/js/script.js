@@ -1,48 +1,51 @@
 let apiKey = "e7d709054173c8d786359abf189001df";
-let fetchButton = document.getElementById("fetch-btn")
+let sumbitArea = document.getElementById("input-form")
 let locationInput = document.getElementById("queryParams")
 let savedSearches = JSON.parse(localStorage.getItem("savedSearch")) ?? [];
 let previousSearches = document.querySelector("#previous-searches")
-if (savedSearches !== null) {
-    let lastSearch = savedSearches[(savedSearches.length - 1)]
-    // requestWeatherData(lastSearch)
-}
 
-// first i need to fetch lon/lat data for city
+
+// function to convert city input to coordinates
 function requestCityCoords(event) {
     event.preventDefault()
 
+    // take city input and split into pieces. 
     let cityInput = locationInput.value;
     cityQuery = cityInput.split(",");
     strippedQuery = []
     for (i = 0; i < cityQuery.length; i++) {
         strippedQuery.push(cityQuery[i].trim())
     }
-
+    // plug split input into request url as parameters
     let requestCoordsUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${strippedQuery[0]},${strippedQuery[1]},${strippedQuery[2]}&limit=1&appid=${apiKey}`
 
-    
-
-    // create button from search
-    let btn = document.createElement("button")
-    btn.className = "button has-background-grey my-3"
-    btn.textContent = locationInput.value
-    previousSearches.appendChild(btn)
-
+    // fetch coordinates
     fetch(requestCoordsUrl)
         .then(function (response) {
             return response.json();
         })
 
         .then(function (data) {
-            // save search
+            // create button from search input 
+            let btn = document.createElement("button")
+            btn.className = "button has-background-grey my-3"
+            btn.textContent = locationInput.value
+            previousSearches.appendChild(btn)
+
+            // save search result coords for later use as well as copy of btn made from search
             let searchResult = {
-                htmlEl: btn,
+                searchText: locationInput.value,
                 lat: data[0].lat,
                 lon: data[0].lon
             }
 
-            savedSearches.push(searchResult)
+            if (savedSearches.length === 10) {
+                savedSearches.shift()
+                savedSearches.push(searchResult)
+            }
+            else {
+                savedSearches.push(searchResult)
+            }
             console.log("saved Searches:", savedSearches)
             locationInput.value = ""
             localStorage.setItem("savedSearch", JSON.stringify(savedSearches))
@@ -52,11 +55,11 @@ function requestCityCoords(event) {
     
 }
 // event listener
-fetchButton.addEventListener("click", requestCityCoords)
+sumbitArea.addEventListener("submit", requestCityCoords)
 
 // Todays elements
 let todaysLoc = document.querySelector("#todays-loc")
-let todaysDate = document.querySelector("#todays-date")
+let todaysIcon = document.querySelector("#todays-icon")
 let todaysTemp = document.querySelector("#todays-temp")
 let todaysWind = document.querySelector("#todays-wind")
 let todaysHumid = document.querySelector("#todays-humid")
@@ -67,7 +70,6 @@ let forecastIcons = document.querySelectorAll("#forecast-icon")
 let forecastTemps = document.querySelectorAll("#forecast-temp")
 let forecastWinds = document.querySelectorAll("#forecast-wind")
 let forecastHumids = document.querySelectorAll("#forecast-humid")
-console.log(forecastDates)
 
 
 function requestWeatherData(coords) {
@@ -84,18 +86,35 @@ function requestWeatherData(coords) {
             let forecastObjects = [data.list[6], data.list[14], data.list[22], data.list[30], data.list[38]]
             console.log(forecastObjects)
 
-            todaysLoc.textContent = data.city.name
-            todaysDate.textContent = data.list[0].dt_txt
+            todaysLoc.textContent = `${data.city.name} on ${data.list[0].dt_txt}`
+            todaysIcon.setAttribute("src", `http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`)
             todaysTemp.textContent = `Temp: ${data.list[0].main.temp} \xB0F`
             todaysWind.textContent = `Wind: ${data.list[0].wind.speed} MPH`
             todaysHumid.textContent = `Humidity: ${data.list[0].main.humidity} %`
 
             for (let i = 0; i < forecastObjects.length; i++) {
                 forecastDates[i].textContent = forecastObjects[i].dt_txt
-                forecastIcons[i].textContent = forecastObjects[i].weather[1]
+                forecastIcons[i].setAttribute("src", `http://openweathermap.org/img/w/${forecastObjects[i].weather[0].icon}.png`)
                 forecastTemps[i].textContent = `Temp: ${forecastObjects[i].main.temp} \xB0F`
                 forecastWinds[i].textContent = `Wind: ${forecastObjects[i].wind.speed} MPH`
                 forecastHumids[i].textContent = `Humidity: ${forecastObjects[i].main.humidity} %`
             }
         })
 }
+
+function displaySavedResults() {
+    for (i = 0; i < savedSearches.length; i++) {
+        let btn = document.createElement("button")
+        btn.className = "button has-background-grey my-3"
+        btn.textContent = savedSearches[i].searchText
+        previousSearches.appendChild(btn)
+    }
+}
+
+displaySavedResults()
+
+previousSearches.addEventListener("click", function(e) {
+    
+    let matchedSearch = savedSearches.find(el => el.searchText === e.target.textContent)
+    requestWeatherData(matchedSearch)
+} )
