@@ -16,7 +16,17 @@ span {
     width: 100%;
 }
 
+#previous-searches {
+    max-height: 220px;
+    overflow: auto;
+}
 
 #previous-searches button{
     color: white;
+}
+
+
+#five-day, #today-container  {
+    opacity: 0;
+    transition: opacity ease-in 1s;
 }

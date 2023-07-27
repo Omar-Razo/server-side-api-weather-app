@@ -58,6 +58,7 @@ function requestCityCoords(event) {
 sumbitArea.addEventListener("submit", requestCityCoords)
 
 // Todays elements
+let todayContainer = document.querySelector("#today-container")
 let todaysLoc = document.querySelector("#todays-loc")
 let todaysIcon = document.querySelector("#todays-icon")
 let todaysTemp = document.querySelector("#todays-temp")
@@ -65,6 +66,7 @@ let todaysWind = document.querySelector("#todays-wind")
 let todaysHumid = document.querySelector("#todays-humid")
 
 // forecast elements
+let forecastContainer = document.querySelector("#five-day")
 let forecastDates = document.querySelectorAll("#forecast-date")
 let forecastIcons = document.querySelectorAll("#forecast-icon")
 let forecastTemps = document.querySelectorAll("#forecast-temp")
@@ -99,6 +101,9 @@ function requestWeatherData(coords) {
                 forecastWinds[i].textContent = `Wind: ${forecastObjects[i].wind.speed} MPH`
                 forecastHumids[i].textContent = `Humidity: ${forecastObjects[i].main.humidity} %`
             }
+
+            todayContainer.setAttribute("style", "opacity: 1;")
+            forecastContainer.setAttribute("style", "opacity: 1;")
         })
 }
 
