@@ -1,0 +1,32 @@
+html, body {
+    height: 100%;
+}
+
+
+body {
+    font-family: 'Oswald', sans-serif;
+    font-size: 120%;
+}
+
+span {
+    padding-inline: 0.5rem;
+}
+
+.hero {
+    width: 100%;
+}
+
+#previous-searches {
+    max-height: 220px;
+    overflow: auto;
+}
+
+#previous-searches button{
+    color: white;
+}
+
+
+#five-day, #today-container  {
+    opacity: 0;
+    transition: opacity ease-in 1s;
+}

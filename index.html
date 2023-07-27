@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Flash Weather</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="./assets/js/script.js" defer></script>
+</head>
+
+<body class="has-background-info">
+<nav class="navbar has-background-dark" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand title">
+        <a class="navbar-item has-text-white" href="">
+        <span class="is-italic has-text-warning">Flash</span>Weather
+        <img src="./assets/imgs/Lightning_bolt_inside_teal_circle.svg" width="38" height="28">
+        </a>
+    </div>
+</nav>
+
+<main class="columns is-flex is-justify-content-space-around is-flex-wrap-wrap">
+    <!-- search input -->
+    <div class="column is-one-fifth my-6">
+        <form class="box is-flex is-flex-direction-column " id="input-form">
+            <div class="field">
+                <label class="label is-size-4">I need to know the weather in:</label>
+                <div class="control">
+                    <input class="input" type="city-name" placeholder="city name, state, country" id="queryParams">
+                </div>
+            </div>
+        
+            <button class="button is-primary" id="fetch-btn">Search</button>
+        </form>
+        <div class="box is-flex is-flex-direction-column is-align-items-center" id="previous-searches">
+            <label class="label is-size-4">Previous Searches</label>
+
+        </div>
+    </div>
+
+    <!-- today's forecast displayed -->
+    <div class="card column is-two-thirds my-6" id="today-container">
+        <header class="card-header">
+            <p class="card-header-title has-background-warning is-size-1" id="todays-loc">
+                Ocean City, Maryland
+            </p>
+            <img class="card-header-icon is-size-3 has-background-dark has-text-warning" id="todays-icon">
+        </header>
+
+        <div class="card-content">
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-48x48" id="temp-fig">
+                    <img src="./assets/imgs/Thermometer_By_Chrystina_Angeline,_ID.svg" alt="Placeholder image">
+                    </figure>
+                </div>
+                
+                <div class="media-content">
+                    <p class="title is-2" id="todays-temp">Temp: </p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-48x48" id="temp-fig">
+                    <img src="./assets/imgs/Wind_power.svg" alt="Placeholder image">
+                    </figure>
+                </div>
+                
+                <div class="media-content">
+                    <p class="title is-2" id="todays-wind">Wind: </p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-48x48" id="temp-fig">
+                    <img src="./assets/imgs/ISO_7000_-_Ref-No_2620.svg" alt="Placeholder image">
+                    </figure>
+                </div>
+                
+                <div class="media-content">
+                    <p class="title is-2" id="todays-humid">Humidity: </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="hero is-small has-background-grey">
+        <div class="hero-body ">
+            <p class="title has-text-warning is-size-1">
+                5-Day Forecast:
+            </p>
+        </div>
+    </section>
+
+    <!-- 5-day forecast -->
+    <section class="columns column is-flex is-justify-content-flex-start is-full is-flex-wrap-wrap" id="five-day">
+        <div class="box column m-5">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content" id="forecast">
+                        <p class="title is-3" id="forecast-date">7-24-2023</p>
+                        <img src="" alt="current weather icon" class="is-flex is-justify-content-center" id="forecast-icon">
+                        <p class="is-size-4" id="forecast-temp">Temp: 48</p>
+                        <p class="is-size-4" id="forecast-wind">Wind: 12 MPH</p>
+                        <p class="is-size-4" id="forecast-humid">Humidity: 30%</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="box column m-5">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content" id="forecast">
+                        <p class="title is-3" id="forecast-date">7-24-2023</p>
+                        <img src="" alt="current weather icon" class="is-flex is-justify-content-center" id="forecast-icon">
+                        <p class="is-size-4" id="forecast-temp">Temp: 48</p>
+                        <p class="is-size-4" id="forecast-wind">Wind: 12 MPH</p>
+                        <p class="is-size-4" id="forecast-humid">Humidity: 30%</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="box column m-5">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content" id="forecast">
+                        <p class="title is-3" id="forecast-date">7-24-2023</p>
+                        <img src="" alt="current weather icon" class="is-flex is-justify-content-center" id="forecast-icon">
+                        <p class="is-size-4" id="forecast-temp">Temp: 48</p>
+                        <p class="is-size-4" id="forecast-wind">Wind: 12 MPH</p>
+                        <p class="is-size-4" id="forecast-humid">Humidity: 30%</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="box column m-5">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content" id="forecast">
+                        <p class="title is-3" id="forecast-date">7-24-2023</p>
+                        <img src="" alt="current weather icon" class="is-flex is-justify-content-center" id="forecast-icon">
+                        <p class="is-size-4" id="forecast-temp">Temp: 48</p>
+                        <p class="is-size-4" id="forecast-wind">Wind: 12 MPH</p>
+                        <p class="is-size-4" id="forecast-humid">Humidity: 30%</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="box column m-5">
+            <article class="media">
+                <div class="media-content">
+                    <div class="content" id="forecast">
+                        <p class="title is-3" id="forecast-date">7-24-2023</p>
+                        <img src="" alt="current weather icon" class="is-flex is-justify-content-center" id="forecast-icon">
+                        <p class="is-size-4" id="forecast-temp">Temp: 48</p>
+                        <p class="is-size-4" id="forecast-wind">Wind: 12 MPH</p>
+                        <p class="is-size-4" id="forecast-humid">Humidity: 30%</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+</main>
+</body>
+</html>
