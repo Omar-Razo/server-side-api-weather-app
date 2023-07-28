@@ -89,14 +89,14 @@ function requestWeatherData(coords) {
             console.log(forecastObjects)
 
             todaysLoc.textContent = `${data.city.name} on ${data.list[0].dt_txt}`
-            todaysIcon.setAttribute("src", `http://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`)
+            todaysIcon.setAttribute("src", `https://openweathermap.org/img/w/${data.list[0].weather[0].icon}.png`)
             todaysTemp.textContent = `Temp: ${data.list[0].main.temp} \xB0F`
             todaysWind.textContent = `Wind: ${data.list[0].wind.speed} MPH`
             todaysHumid.textContent = `Humidity: ${data.list[0].main.humidity} %`
 
             for (let i = 0; i < forecastObjects.length; i++) {
                 forecastDates[i].textContent = forecastObjects[i].dt_txt
-                forecastIcons[i].setAttribute("src", `http://openweathermap.org/img/w/${forecastObjects[i].weather[0].icon}.png`)
+                forecastIcons[i].setAttribute("src", `https://openweathermap.org/img/w/${forecastObjects[i].weather[0].icon}.png`)
                 forecastTemps[i].textContent = `Temp: ${forecastObjects[i].main.temp} \xB0F`
                 forecastWinds[i].textContent = `Wind: ${forecastObjects[i].wind.speed} MPH`
                 forecastHumids[i].textContent = `Humidity: ${forecastObjects[i].main.humidity} %`
