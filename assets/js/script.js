@@ -17,7 +17,7 @@ function requestCityCoords(event) {
         strippedQuery.push(cityQuery[i].trim())
     }
     // plug split input into request url as parameters
-    let requestCoordsUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${strippedQuery[0]},${strippedQuery[1]},${strippedQuery[2]}&limit=1&appid=${apiKey}`
+    let requestCoordsUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${strippedQuery[0]},${strippedQuery[1]},${strippedQuery[2]}&limit=1&appid=${apiKey}`
 
     // fetch coordinates
     fetch(requestCoordsUrl)
